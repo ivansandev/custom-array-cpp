@@ -10,7 +10,7 @@ int main() {
     // INSERTING ELEMENTS
     arr.insert(7, "Alberto Watson", "8291837162", "Wootton Ride");
     arr.insert(4, "Ivan Sandev", "3182739160", "");
-    arr[4].setName("Boyan Kamenov");
+    arr[4].setAddress("Boyan Kamenov");
     arr.insert(9, "Brad Pitt", "3718392073", "Ryat Drive");
     arr.insert(1, "Tommy Shelby", "3182930182", "Washington Link");
     arr.insert(3, "James Bond", "6554182734", "Ryat Drive");
@@ -21,7 +21,7 @@ int main() {
     std::cout << std::endl<< arr << std::endl;
 
     // DELETING ELEMENTS AT INDEX
-    arr.deleteAt(9);
+    arr.deleteAt(7);
     // DELETING ELEMENTS BY SEARCH
     arr.deleteCriteria("Tommy Shelby");
 
