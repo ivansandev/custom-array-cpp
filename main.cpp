@@ -17,9 +17,6 @@ int main() {
     arr.insert(2, "Tony Stark", "1829537234", "Fisher Side");
     arr.insert(11, "Will Smith", "3938157239", "Ryat Drive");
 
-    // CREATING A COPY OF THE ARRAY IN THE HEAP
-//    Array<12> arr_copy_2 = arr;
-
     // PRINTING ARRAY WITH << OPERATOR
     std::cout << std::endl<< arr << std::endl;
 
