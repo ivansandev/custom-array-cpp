@@ -1,11 +1,13 @@
 #include "../inc/Person.h"
 
+// CONSTRUCTOR
 Person::Person() {
     name = strdup("N/A");
     address = strdup("N/A");
     egn = strdup("N/A");
 }
 
+// CONSTRUCTOR
 Person::Person(char *name, char *egn, char *address) {
     this->name = new char[sizeof(name)];
     strcpy(this->name, name);
@@ -17,17 +19,17 @@ Person::Person(char *name, char *egn, char *address) {
     strcpy(this->address, address);
 }
 
+// DECONSTRUCTOR
+/*
 Person::~Person() {
-//    Pointers are already being freed at Array class
-//
-//    if (name != NULL)
-//        delete name;
-//    if (address != NULL)
-//        delete address;
-//    if (egn != nullptr)
-//        delete egn;
+//    Memory for char* is already being freed at Array class
+    delete name;
+    delete address;
+    delete egn;
 }
+*/
 
+// COPY CONSTRUCTOR
 Person::Person(const Person &person_old) {
     name = new char(strlen(person_old.name));
     strcpy(name, person_old.name);
@@ -37,6 +39,7 @@ Person::Person(const Person &person_old) {
     strcpy(address, person_old.address);
 }
 
+// COPY ASSIGNMENT OPERATOR
 Person &Person::operator=(const Person &person_old) {
     name = new char(strlen(person_old.name));
     strcpy(name, person_old.name);
@@ -48,31 +51,7 @@ Person &Person::operator=(const Person &person_old) {
     return *this;
 }
 
-char *Person::getName() const {
-    return name;
-}
-
-void Person::setName(char *name) {
-    Person::name = name;
-}
-
-char *Person::getEgn() const {
-    return egn;
-}
-
-void Person::setEgn(char *egn) {
-    Person::egn = egn;
-}
-
-char *Person::getAddress() const {
-    return address;
-}
-
-void Person::setAddress(char *address) {
-    Person::address = address;
-}
-
-
+// OVERLOADING OPERATOR <<
 std::ostream &operator<<(std::ostream &os, const Person &person) {
     if (person.isEmpty()) {
         os << "No info.";
@@ -120,6 +99,7 @@ bool Person::isNameEmpty() {
     return false;
 }
 
+// OVERLOAD OPERATOR < FOR COMPARING NAMES
 bool Person::operator<(const Person &rhs) const {
     if (rhs.name == nullptr || strcmp(rhs.name, "N/A") == 0) {
         return false;
@@ -196,6 +176,33 @@ void Person::fromBinary(std::ifstream &fp) {
     address = new char(str_len);
     fp.read(address, str_len);
     address[str_len] = '\0';
+}
+
+
+// GETTERS / SETTERS
+
+char *Person::getName() const {
+    return name;
+}
+
+void Person::setName(char *name) {
+    Person::name = name;
+}
+
+char *Person::getEgn() const {
+    return egn;
+}
+
+void Person::setEgn(char *egn) {
+    Person::egn = egn;
+}
+
+char *Person::getAddress() const {
+    return address;
+}
+
+void Person::setAddress(char *address) {
+    Person::address = address;
 }
 
 

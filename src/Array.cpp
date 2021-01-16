@@ -1,5 +1,6 @@
 #include "../inc/Array.h"
 
+// CONSTRUCTOR
 template<size_t N>
 Array<N>::Array() {
     for (int i = 0; i <= size(); i++) {
@@ -7,6 +8,7 @@ Array<N>::Array() {
     }
 }
 
+// DECONSTRUCTOR
 template<size_t N>
 Array<N>::~Array() {
     for (int i = 0; i < size(); i++) {
@@ -14,23 +16,27 @@ Array<N>::~Array() {
     }
 }
 
+// COPY CONSTRUCTOR
 template<size_t N>
-Array<N>::Array(const Array &old_arr) {
+Array<N>::Array(const Array &other) {
     for (int i = 0; i < size(); i++) {
-        people[i] = old_arr.people[i];
+        people[i] = other.people[i];
     }
 }
 
+// COPY ASSIGNMENT OPERATOR
 template<size_t N>
-Array<N> &Array<N>::operator=(const Array &old_arr) {
+Array<N> &Array<N>::operator=(const Array &other) {
     for (int i = 0; i < size(); i++) {
-        people[i] = old_arr.people[i];
+        people[i] = other.people[i];
     }
     return *this;
 }
 
 template<size_t N>
 void Array<N>::insert(int index, const char *name, const char *egn, const char *address) {
+    // Object is being deleted because we want override
+    //   remove any previous data that might be stored there
     delete people[index];
     people[index] = new Person(const_cast<char *> (name), const_cast<char *>(egn), const_cast<char *>(address));
 }
@@ -81,12 +87,14 @@ void Array<N>::print() {
 template<size_t N>
 void Array<N>::printSorted() {
     Person *sorted_people[N];
-    // Creating a copy so that we don't change the order of the initial array
+    // Creating a copy (of the pointers, not the objects)
+    //   so that we don't change the order of the initial array
     for (int i = 0; i < size(); ++i) {
         sorted_people[i] = people[i];
     }
     // Bubble sorting based on member 'name'
     // Operation for '<' is defined in class Person
+    //   to compare first letter of member 'name'
     for (int i = 0; i < size() - 1; i++) {
         for (int j = 0; j < size() - i - 1; j++) {
             if (*sorted_people[j] < *sorted_people[j + 1]) {
@@ -149,9 +157,9 @@ void Array<N>::loadBinary(const std::string &filename) {
         int int_size = 0;
         fp.read((char *) &int_size, sizeof(int_size));
         if (int_size > N) {
-            std::cout << "ERROR: Data that's trying to be read has a bigger array than the one you've specified"
+            std::cout << "ERROR: Data that you're trying to read has a bigger array than the one you've specified"
                       << std::endl;
-            std::cout << "DEBUGGING: Your array size: " << size() << "; " << filename << " array size: " << int_size
+            std::cout << "DEBUG: Your array size: " << size() << "; " << filename << " array size: " << int_size
                       << std::endl;
             std::cout << "Exiting..." << std::endl;
         } else {
@@ -162,7 +170,26 @@ void Array<N>::loadBinary(const std::string &filename) {
         }
         fp.close();
     } else {
-        std::cout << "Cannot open bin file for writing." << std::endl;
+        std::cout << "Cannot open bin file for reading." << std::endl;
     }
 }
 
+template<size_t N>
+Person *Array<N>::data() {
+    return people;
+}
+
+template<size_t N>
+const Person *Array<N>::data() const {
+    return people;
+}
+
+template<size_t N>
+Person &Array<N>::operator[](size_t index) {
+    return *people[index];
+}
+
+template<size_t N>
+const Person &Array<N>::operator[](size_t index) const {
+    return *people[index];
+}

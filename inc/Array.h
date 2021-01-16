@@ -32,14 +32,15 @@ public:
     void loadBinary(const std::string &filename);
 
     // ARRAY-LIKE METHODS
-    Person* data() { return people; }
-    const Person* data() const { return people; }
+    Person* data();
+    const Person* data() const;
     size_t size() const;
 
     // OPERATOR OVERLOADING
-    Person& operator[](size_t index) { return *people[index]; }
-    const Person& operator[](size_t index) const { return *people[index]; }
-    Array& operator = (const Array &old_arr);
+    Person& operator[](size_t index);
+    const Person& operator[](size_t index) const;
+    Array& operator = (const Array &other);
+
     friend std::ostream &operator<<(std::ostream &os, const Array &array) {
         for (auto& person : array.people) {
             if (!(person->isEmpty()))

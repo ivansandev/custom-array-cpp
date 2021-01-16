@@ -1,7 +1,6 @@
 #include <iostream>
 #include "inc/Array.h"
-#include "src/Array.cpp"
-#include <array>
+#include "src/Array.cpp" // needs to be included for the template
 
 int main() {
     // CREATING ARRAY IN THE STACK
@@ -14,6 +13,9 @@ int main() {
     arr.insert(9, "Brad Pitt", "3718392073", "Ryat Drive");
     arr.insert(1, "Tommy Shelby", "3182930182", "Washington Link");
     arr.insert(3, "James Bond", "6554182734", "Ryat Drive");
+    arr[0].setName("Vladimir Putin");
+    arr[0].setAddress("Midtown Down");
+    arr[0].setEgn("6893718295");
     arr.insert(2, "Tony Stark", "1829537234", "Fisher Side");
     arr.insert(11, "Will Smith", "3938157239", "Ryat Drive");
 
@@ -37,10 +39,10 @@ int main() {
     arr.saveBinary("data.bin");
 
     // LOADING BINARY TO ANOTHER ARRAY
-    Array<12> arr2;
-    arr2.loadBinary("data.bin");
+    Array<12> arr_cpy;
+    arr_cpy.loadBinary("data.bin");
     // PRINTING DATA READ FROM BINARY FILE
-    std::cout << arr2;
+    std::cout << arr_cpy;
 
     return 0;
 }
