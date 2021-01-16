@@ -18,7 +18,10 @@ Array<N>::~Array() {
 template<size_t N>
 Array<N>::Array(const Array &other) {
     for (int i = 0; i < size(); i++) {
-        people[i] = other.people[i];
+        people[i] = new Person;
+        people[i]->setName(other.people[i]->getName());
+        people[i]->setAddress(other.people[i]->getAddress());
+        people[i]->setEgn(other.people[i]->getEgn());
     }
 }
 

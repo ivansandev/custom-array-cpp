@@ -38,12 +38,9 @@ Person::Person(const Person &person_old) {
 
 // COPY ASSIGNMENT OPERATOR
 Person &Person::operator=(const Person &person_old) {
-    name = new char(strlen(person_old.name));
-    strcpy(name, person_old.name);
-    egn = new char(strlen(person_old.egn));
-    strcpy(egn, person_old.egn);
-    address = new char(strlen(person_old.address));
-    strcpy(address, person_old.address);
+    name = person_old.name;
+    egn = person_old.egn;
+    address = person_old.address;
 
     return *this;
 }
