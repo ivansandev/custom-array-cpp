@@ -15,7 +15,7 @@ private:
 public:
     // Constructor
     Array();
-    //  Deconstructor
+    //  Destructor
     ~Array();
     // Copy constructor
     Array(const Array&);

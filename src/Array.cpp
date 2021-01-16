@@ -8,12 +8,10 @@ Array<N>::Array() {
     }
 }
 
-// DECONSTRUCTOR
+// DESTRUCTOR
 template<size_t N>
 Array<N>::~Array() {
-    for (int i = 0; i < size(); i++) {
-        delete (people)[i];
-    }
+    // Person class takes care of freeing memory used
 }
 
 // COPY CONSTRUCTOR

@@ -19,15 +19,12 @@ Person::Person(char *name, char *egn, char *address) {
     strcpy(this->address, address);
 }
 
-// DECONSTRUCTOR
-/*
+// DESTRUCTOR
 Person::~Person() {
-//    Memory for char* is already being freed at Array class
     delete name;
     delete address;
     delete egn;
 }
-*/
 
 // COPY CONSTRUCTOR
 Person::Person(const Person &person_old) {

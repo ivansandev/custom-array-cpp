@@ -13,7 +13,7 @@ private:
 public:
     Person();
     Person(char *name, char *egn, char *address);
-//    ~Person();
+    ~Person();
     Person(const Person&);
 
     Person& operator=(const Person& person_old);
